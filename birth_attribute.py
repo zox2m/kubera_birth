@@ -44,6 +44,9 @@ attribute = ['무',
              '대지',
              '파괴',
              '죽음']
+wil_month =0
+wil_day=0
+wil_time=0
 
 def birth_attribute():
     month = int(input(" 월? :"))
