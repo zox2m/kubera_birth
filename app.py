@@ -15,9 +15,9 @@ def index():
 
     return render_template('index.html',month=month, day=day,time=time)
 
-@app.route('/result') # 첫 화면
+@app.route('/result') 
 def result():
-    return
+    return render_template('result.html')
 
 
 if __name__ == '__main__':
