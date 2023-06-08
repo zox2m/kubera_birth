@@ -49,44 +49,67 @@ wil_day=0
 wil_time=0
 
 
-def birth_attribute():
-    month = int(input(" 월? :"))
-    day = int(input(" 일? :"))
-    time = float(input(" 시간? (24시) :"))
-    print('\n')
-    return cal_rate(month,day,time)
 
+def cal_all(month,day,time):
+    month = month
+    day = day
+    time = time
 
-def cal_rate(month,day,time):
-    rate = 0
-    for i in range(month-1):
-        rate += earth_month[i] # 생일 이전 월 일수 모두 합
-    rate += day - 1 # 생일 일자 합 
-    rate *= 24 # 구한 모든 일자에 * 24하여 시간단위
-    rate += time
-    rate /= 365 * 24
-    #print(rate)
-    return conv_month(rate)
+    '''
+    def birth_attribute():
+        month = int(input(" 월? :"))
+        day = int(input(" 일? :"))
+        time = float(input(" 시간? (24시) :"))
+        print('\n')
+        return cal_rate(month,day,time)
+        '''
 
-def conv_month(rate):
-    wil_month = math.floor(rate * 12) +1
-    print(wil_month,attribute[wil_month-1])
-    rate_day = rate * 12 - wil_month + 1
-    #print(rate_day)
-    return conv_day(rate_day)
+    def cal_rate():
+        rate = 0
+        for i in range(month-1):
+            rate += earth_month[i] # 생일 이전 월 일수 모두 합
+        rate += day - 1 # 생일 일자 합 
+        rate *= 24 # 구한 모든 일자에 * 24하여 시간단위
+        rate += time
+        rate /= 365 * 24
+        #print(rate)
+        return conv_month(rate)
 
-def conv_day(rate_day):
-    wil_day = math.floor(rate_day * 36) + 1
-    print(wil_day, attribute[wil_day-1])
-    rate_time = rate_day * 36 - wil_day + 1
-    #print(rate_time)
-    return conv_time(rate_time)
+    def conv_month(rate):
+        wil_month = math.floor(rate * 12) +1
+        print(attribute[wil_month-1])
+        rate_day = rate * 12 - wil_month + 1
+        #print(rate_day)
+        return conv_day(rate_day)
 
-def conv_time(rate_time):
-    wil_time = math.floor(rate_time * 24)
+    def conv_day(rate_day):
+        wil_day = math.floor(rate_day * 36) + 1
+        print(attribute[wil_day-1])
+        rate_time = rate_day * 36 - wil_day + 1
+        #print(rate_time)
+        return conv_time(rate_time)
+
+    def conv_time(rate_time):
+        wil_time = math.floor(rate_time * 24)
+        if wil_time == 0:
+            print(wil_time, attribute[0])
+        else:
+            print(attribute[math.floor(wil_time/2)])
+
+    cal_rate()
+
+def get_att():
+    temp = []
+    #최종 월
+    temp.append(attribute[wil_month-1])
+    #최종 일
+    temp.append(attribute[wil_day-1])
+    #최종 시
     if wil_time == 0:
-        print(wil_time, attribute[0])
+        temp.append(attribute[0])
     else:
-        print(attribute[math.floor(wil_time/2)])
+        temp.append(attribute[math.floor(wil_time/2)])
+    
+    return temp
 
-birth_attribute()
+#cal_all(12,13,15)

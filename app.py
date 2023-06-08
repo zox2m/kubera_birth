@@ -8,13 +8,18 @@ def index():
 
 @app.route('/result',methods=['POST'])
 def result():
+    print("hello")
     result= None
     if request.method =='POST':
         month = request.form['month']
         day = request.form['day']
         time = request.form['time']
-    result = birth_attribute.cal_rate(month,day,time)
-    return render_template('result.html',result)
+    month = int(month)
+    day = int(day)
+    time = int(time)
+    birth_attribute.cal_all(month,day,time)
+    
+    return render_template('result.html',result = birth_attribute.get_att())
 
 if __name__ == '__main__':
     app.run(debug=True)
