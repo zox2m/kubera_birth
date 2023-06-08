@@ -48,12 +48,14 @@ wil_month =0
 wil_day=0
 wil_time=0
 
+
 def birth_attribute():
     month = int(input(" 월? :"))
     day = int(input(" 일? :"))
     time = float(input(" 시간? (24시) :"))
     print('\n')
     return cal_rate(month,day,time)
+
 
 def cal_rate(month,day,time):
     rate = 0

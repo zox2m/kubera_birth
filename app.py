@@ -4,21 +4,19 @@ app = Flask(__name__)
 
 @app.route('/') # 첫 화면
 def index():
-    month=None
-    day=None
-    time=None
-    
+    return render_template('index.html')
+
+@app.route('/result',methods=['POST'])
+def result():
+    result= None
     if request.method =='POST':
         month = request.form['month']
         day = request.form['day']
         time = request.form['time']
-
-    return render_template('index.html',month=month, day=day,time=time)
-
-@app.route('/result') 
-def result():
-    return render_template('result.html')
-
+    result = birth_attribute.cal_rate(month,day,time)
+    return render_template('result.html',result)
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
