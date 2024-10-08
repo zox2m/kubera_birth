@@ -51,9 +51,7 @@ wil_time=0
 
 
 def cal_all(month,day,time):
-    month = month
-    day = day
-    time = time
+    global wil_month, wil_day, wil_time  # 전역 변수를 함수 내부에서 수정할 수 있도록 지정
 
     '''
     def birth_attribute():
