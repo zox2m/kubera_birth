@@ -67,40 +67,24 @@ def cal_all(month,day,time):
         return conv_month(rate)
 
     def conv_month(rate):
-        wil_month = math.floor(rate * 12) +1
-        print(attribute[wil_month-1])
-        rate_day = rate * 12 - wil_month + 1
-        #print(rate_day)
-        return conv_day(rate_day)
+        wil_month = math.floor(rate * 12) + 1
+        rate_day = rate * 12 - (wil_month - 1)
+        return conv_day(rate_day, wil_month)
 
-    def conv_day(rate_day):
+    def conv_day(rate_day, wil_month):
         wil_day = math.floor(rate_day * 36) + 1
-        print(attribute[wil_day-1])
-        rate_time = rate_day * 36 - wil_day + 1
-        #print(rate_time)
-        return conv_time(rate_time)
+        rate_time = rate_day * 36 - (wil_day - 1)
+        return conv_time(rate_time, wil_month, wil_day)
 
-    def conv_time(rate_time):
+    def conv_time(rate_time, wil_month, wil_day):
         wil_time = math.floor(rate_time * 24)
         if wil_time == 0:
-            print(wil_time, attribute[0])
+            return [attribute[wil_month - 1], attribute[wil_day - 1], attribute[0]]
         else:
-            print(attribute[math.floor(wil_time/2)])
+            return [attribute[wil_month - 1], attribute[wil_day - 1], attribute[math.floor(wil_time / 2)]]
 
-    cal_rate()
+    return cal_rate()
 
-def get_att():
-    temp = []
-    #최종 월
-    temp.append(attribute[wil_month-1])
-    #최종 일
-    temp.append(attribute[wil_day-1])
-    #최종 시
-    if wil_time == 0:
-        temp.append(attribute[0])
-    else:
-        temp.append(attribute[math.floor(wil_time/2)])
-    
-    return temp
+
 
 #cal_all(12,13,15)
